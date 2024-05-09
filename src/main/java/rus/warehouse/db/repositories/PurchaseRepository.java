@@ -1,5 +1,7 @@
 package rus.warehouse.db.repositories;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,10 +17,10 @@ import java.util.Optional;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
-    Optional<List<Purchase>> findByDateBetween(LocalDateTime startDate, LocalDateTime EndDate);
-    Optional<List<Purchase>> findByDateBefore(LocalDateTime EndDate);
-    Optional<List<Purchase>> findByDateAfter(LocalDateTime startDate);
-    Optional<List<Purchase>> findAllByOrderByIdDesc();
+    Page<Purchase> findByDateBetween(LocalDateTime startDate, LocalDateTime EndDate, PageRequest pageRequest);
+    Page<Purchase> findByDateBefore(LocalDateTime EndDate, PageRequest pageRequest);
+    Page<Purchase> findByDateAfter(LocalDateTime startDate, PageRequest pageRequest);
+    Page<Purchase> findAllByOrderByIdDesc(PageRequest pageRequest);
 
 
     //Optional<List<Purchase>> findByDate(LocalDate startDate);
