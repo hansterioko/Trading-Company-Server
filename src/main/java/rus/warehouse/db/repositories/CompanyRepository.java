@@ -4,6 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import rus.warehouse.db.models.Company;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -12,5 +13,5 @@ public interface CompanyRepository extends CrudRepository<Company, Integer> {
     Optional<Company> findByNameContainingIgnoreCase(String partOfName);
 
     // Просто вывод по ID по уменьшению ИД
-    Optional<Company> findAllByOrderByIdDesc();
+    Optional<List<Company>> findAllByOrderByIdDesc();
 }

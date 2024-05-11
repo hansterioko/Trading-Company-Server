@@ -27,6 +27,8 @@ public class Company {
     @Column(nullable = false)
     private String house;
 
+    private String phone;
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Purchase> purchases;
