@@ -14,4 +14,6 @@ public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
     // Просто вывод по ID по уменьшению ИД
     Optional<List<Company>> findAllByOrderByIdDesc();
+
+    Company findByNameIgnoreCase(String name);
 }

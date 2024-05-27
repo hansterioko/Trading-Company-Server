@@ -24,15 +24,15 @@ public class Order {
     @Column(nullable = false)
     @Min(value = 1, message = "Стоимость поставки не подсчитана")
     private Integer price;
+
     @ManyToOne
-    @JoinColumn(name = "carwash_id", nullable = false)
-    private Carwash carwash;
+    @JoinColumn(name = "userclient_id", nullable = false)
+    private UserClient userclient;
     @Column(nullable = false)
     private String status;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Order_List> order_lists;
-
     @Column(nullable = false)
     private LocalDateTime date;
 }

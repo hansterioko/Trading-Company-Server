@@ -16,4 +16,17 @@ public class CompanyService {
     public Optional<List<Company>> getAll(){
         return companyRepository.findAllByOrderByIdDesc();
     }
+
+    public Company createCompany(Company company){
+        if (companyRepository.findByNameIgnoreCase(company.getName()) != null){
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            return companyRepository.save(company);
+        }
+    }
 }

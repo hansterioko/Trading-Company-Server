@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +14,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "carwashes")
-public class Carwash {
+@Table(name = "userclients")
+public class UserClient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,10 +33,7 @@ public class Carwash {
     @Max(value = 99, message = "Скидка не может быть более 99%")
     private Integer discount;
 
-    @Column(nullable = false)
-    private String key;
-
-    @OneToMany(mappedBy = "carwash", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userclient", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Order> orders;
 }

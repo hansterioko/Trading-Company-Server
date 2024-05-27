@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,11 +31,15 @@ public class Product {
     private String Unit;
     @Column(nullable = false)
     private Integer price;
+    // NEW COLUMN 26.05.2024
+    private LocalDateTime dateHold;
+    // New column 26.05.2024
+    private LocalDateTime dateOfManufacture;
     @Column(nullable = false)
     private Integer countOnWarehouse;
 
 // VREMENNNNNNNOOOOO    @Column(nullable = false)
-    private String photo;
+    //private String photo;
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
