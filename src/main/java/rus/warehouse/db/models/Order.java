@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,13 +24,11 @@ public class Order {
     private Integer id;
     @Column(nullable = false)
     @Min(value = 1, message = "Стоимость поставки не подсчитана")
-    private Integer price;
-
+    private BigDecimal price;
+    private BigDecimal costWithVat;
     @ManyToOne
     @JoinColumn(name = "userclient_id", nullable = false)
     private UserClient userclient;
-    @Column(nullable = false)
-    private String status;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Order_List> order_lists;

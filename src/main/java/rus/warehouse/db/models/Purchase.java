@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,12 +23,15 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     @Column(nullable = false)
     private LocalDateTime date;
 
     @Column(nullable = false)
-    @Min(value = 1, message = "Стоимость не указана")
-    private Integer price;
+    private BigDecimal price;
+
+    @Column(nullable = false)
+    private BigDecimal costWithVAT;
 
     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
 //    @JsonIgnore
@@ -37,4 +41,11 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
+
+    public Purchase(LocalDateTime date, BigDecimal price, BigDecimal costWithVAT, Company company) {
+        this.date = date;
+        this.price = price;
+        this.costWithVAT = costWithVAT;
+        this.company = company;
+    }
 }

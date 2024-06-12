@@ -6,10 +6,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import rus.warehouse.db.models.Company;
+import rus.warehouse.db.modelsDTO.GetPurchaseDTO;
+import rus.warehouse.db.modelsDTO.PurchaseDTO;
 import rus.warehouse.db.services.PurchaseService;
 import java.time.LocalDateTime;
 
@@ -35,6 +36,18 @@ public class PurchaseController {
                 return new ResponseEntity<>(purchaseService.getAllPurchase(startDate, endDate, PageRequest.of(page, 14, Sort.by(Sort.Direction.ASC, "date")), listProviders), HttpStatus.OK);
                 //return new ResponseEntity<>(purchaseService.getAllPurchase(startDate, endDate, PageRequest.of(page, 14, Sort.by("date").ascending()), listProviders), HttpStatus.OK);
             }
+        }
+        catch (Exception e){
+            return ResponseEntity.internalServerError().body("Произошла ошибка");
+        }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity create(@RequestBody GetPurchaseDTO getPurchaseDTO, BindingResult bindingResult){
+        try{
+            //System.out.println(getPurchaseDTO);
+            purchaseService.createPurchase(getPurchaseDTO);
+            return ResponseEntity.ok("Закупка создана");
         }
         catch (Exception e){
             return ResponseEntity.internalServerError().body("Произошла ошибка");

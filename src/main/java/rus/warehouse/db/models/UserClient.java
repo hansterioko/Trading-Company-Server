@@ -27,11 +27,11 @@ public class UserClient {
     private String street;
     @Column(nullable = false)
     private String house;
-
-    @Column(nullable = false)
-    @Min(value = 0, message = "Скидка не может быть меньше 0%")
-    @Max(value = 99, message = "Скидка не может быть более 99%")
-    private Integer discount;
+    private String phone;
+//    @Column(nullable = false)
+//    @Min(value = 0, message = "Скидка не может быть меньше 0%")
+//    @Max(value = 99, message = "Скидка не может быть более 99%")
+//    private Integer discount;
 
     @OneToMany(mappedBy = "userclient", cascade = CascadeType.ALL)
     @JsonIgnore
