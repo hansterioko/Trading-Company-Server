@@ -30,4 +30,10 @@ public class Order_List {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public Order_List(Integer count, Order order, Product product) {
+        this.count = count;
+        this.order = order;
+        this.product = product;
+    }
 }

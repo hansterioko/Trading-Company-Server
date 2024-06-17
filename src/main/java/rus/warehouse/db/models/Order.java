@@ -1,5 +1,6 @@
 package rus.warehouse.db.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -33,5 +34,22 @@ public class Order {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Order_List> order_lists;
     @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime date;
+
+    public Order(Integer id, BigDecimal price, BigDecimal costWithVat, UserClient userclient, LocalDateTime date) {
+        this.id = id;
+        this.price = price;
+        this.costWithVat = costWithVat;
+        this.userclient = userclient;
+        this.date = date;
+    }
+
+    public Order(BigDecimal price, BigDecimal costWithVat, UserClient userclient, LocalDateTime date) {
+        this.price = price;
+        this.costWithVat = costWithVat;
+        this.userclient = userclient;
+        this.order_lists = order_lists;
+        this.date = date;
+    }
 }

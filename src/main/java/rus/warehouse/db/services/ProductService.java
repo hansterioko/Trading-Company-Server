@@ -75,6 +75,7 @@ public class ProductService {
     }
 
     public Product disCount(Product product, Integer count){
-        return null;
+        product.setCountOnWarehouse(product.getCountOnWarehouse() - count);
+        return productRepository.save(product);
     }
 }

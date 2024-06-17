@@ -35,10 +35,10 @@ public class Purchase_ListService {
         Purchase purchase = purchaseRepository.findById(idPurchase).get();
 
         List<Purchase_List> purchase_lists = purchase_listRepository.findByPurchaseId(idPurchase);
-        for (Purchase_List pList:
-             purchase_lists) {
-            //System.out.println(pList.getProduct());
-        }
+//        for (Purchase_List pList:
+//             purchase_lists) {
+//            //System.out.println(pList.getProduct());
+//        }
         return new Purchase_listDTO(purchase_lists, purchase);
     }
 }

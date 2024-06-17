@@ -23,4 +23,11 @@ public class DecomProduct {
     private Integer decCount;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private LocalDateTime date;
+
+    public DecomProduct(Product product, String comment, Integer decCount, LocalDateTime date) {
+        this.product = product;
+        this.comment = comment;
+        this.decCount = decCount;
+        this.date = date;
+    }
 }

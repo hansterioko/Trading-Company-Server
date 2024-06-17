@@ -70,4 +70,18 @@ public class Product {
         this.dateExpiration = dateExpiration;
         this.dateOfManufacture = dateOfManufacture;
     }
+
+    public Product(Integer id, String name, int vat, String category, String characteristic, String typePackaging, String unit, BigDecimal price, LocalDateTime dateOfExpiration, LocalDateTime manufactureDate, Integer countOnWarehouse) {
+        this.id = id;
+        this.name = name;
+        this.vat = vat;
+        this.category = category;
+        this.characteristic = characteristic;
+        this.typePackaging = typePackaging;
+        this.unit = unit;
+        this.price = price;
+        this.dateExpiration = dateExpiration;
+        this.dateOfManufacture = dateOfManufacture;
+        this.countOnWarehouse = countOnWarehouse;
+    }
 }
